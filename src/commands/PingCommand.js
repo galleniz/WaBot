@@ -1,17 +1,21 @@
-const Command = require("../Command")
+const Command = require("../Command");
 
-class PingCommand extends Command
-{
-    constructor()
-    {
+/**
+ * Represents a command that responds with the latency between the bot and the server.
+ * @extends Command
+ */
+class PingCommand extends Command {
+    constructor() {
         super({
             name: "ping",
             react: "🏓",
-
-        })
+        });
     }
-    run(args, author, chat, msg){
-        msg.reply("pong!\n" + Math.floor(Date.now() - msg.timestamp) )
+
+    run(args, author, chat, msg) {
+        const latency = Date.now() - msg.timestamp;
+        msg.reply(`pong!\n${latency}`);
     }
 }
+
 module.exports = new PingCommand();
